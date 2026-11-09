@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-teal-50: #eef7f5;
+  --color-teal-100: #d6ede8;
+  --color-teal-200: #b3ddd4;
+  --color-teal-300: #7fc4b6;
+  --color-teal-400: #4fa797;
+  --color-teal-500: #3d8778;
+  --color-teal-600: #2f7366;
+  --color-teal-700: #245c52;
+  --color-teal-800: #1c4840;
+  --color-blush-50: #fff6f4;
+  --color-blush-100: #fdeae6;
+  --color-blush-200: #f9d5cc;
+  --color-blush-300: #f4c3b6;
+  --color-coral: #e0525f;
+
+  --font-sans: var(--font-nunito);
+  --font-script: var(--font-dancing);
+}
+
+body {
+  color: var(--color-teal-800);
+  background:
+    radial-gradient(circle at 0% 15%, #f9d3d3 0 14rem, transparent 14.1rem),
+    radial-gradient(circle at 100% 100%, #f9d3d3 0 12rem, transparent 12.1rem),
+    linear-gradient(135deg, #fff1ef 0%, #fde3e2 55%, #fbd9da 100%);
+  background-attachment: fixed;
+}
+
+/* deixa espaço para a barra fixa de ações ao rolar até um campo/âncora */
+html {
+  scroll-padding: 1.5rem 0 7rem;
+}
+
+::selection {
+  background: var(--color-teal-200);
+}
+
+@keyframes flutuar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes surgir {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-flutuar { animation: flutuar 6s ease-in-out infinite; }
+.animate-surgir { animation: surgir 0.35s ease-out both; }
+
+@media print {
+  body { background: #fff; }
+  @page { margin: 14mm; }
+
+  /* Documentos: imprime só a folha */
+  body.imprimindo-documento * { visibility: hidden; }
+  body.imprimindo-documento #folha-documento,
+  body.imprimindo-documento #folha-documento * { visibility: visible; }
+  body.imprimindo-documento #folha-documento {
+    position: absolute;
+    inset: 0 0 auto 0;
+    max-width: none;
+    padding: 0;
+    box-shadow: none;
+  }
+}
